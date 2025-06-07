@@ -8,8 +8,10 @@ CREATE TABLE IF NOT EXISTS account (
     update_date TIMESTAMP WITHOUT TIME ZONE NULL
 );
 
+-- Índice para busca por nome (não exclusivo)
 CREATE INDEX IF NOT EXISTS idx_account_name ON account(name);
-CREATE INDEX IF NOT EXISTS idx_account_document ON account(document);
+-- Índice único para garantir que não existam documentos duplicados
+CREATE UNIQUE INDEX IF NOT EXISTS uq_account_document ON account(document);
 
 -- Tabela balance
 CREATE TABLE IF NOT EXISTS balance (

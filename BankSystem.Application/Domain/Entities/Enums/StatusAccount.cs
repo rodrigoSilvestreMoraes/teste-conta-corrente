@@ -1,4 +1,4 @@
-﻿namespace bank_system.Application.Domain.Entities.Enums
+﻿namespace bank.system.Application.Domain.Entities.Enums
 {
 	public enum StatusAccount
 	{

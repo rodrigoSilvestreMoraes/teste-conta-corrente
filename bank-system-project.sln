@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E10CE346
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{72F4CB5E-B017-4F6B-82C3-CE043D3C2372}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank-system.Infrastructure", "BankSystem.Infrastructure\bank-system.Infrastructure.csproj", "{FF283BC0-A308-4D06-B286-10780EFE7626}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank.system.Infrastructure", "BankSystem.Infrastructure\bank.system.Infrastructure.csproj", "{FF283BC0-A308-4D06-B286-10780EFE7626}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank-system.Application", "BankSystem.Application\bank-system.Application.csproj", "{31F33779-EDF9-41DA-91B8-9568AB942167}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank.system.Application", "BankSystem.Application\bank.system.Application.csproj", "{31F33779-EDF9-41DA-91B8-9568AB942167}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank-system.API", "BankSystem.API\bank-system.API.csproj", "{4D464A0C-A162-48EF-A933-426F000B3937}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank.system.API", "BankSystem.API\bank.system.API.csproj", "{4D464A0C-A162-48EF-A933-426F000B3937}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank-system.Tests", "BankSystem.Tests\bank-system.Tests.csproj", "{B8663545-8E51-4842-ACFF-3D396945D602}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bank.system.Tests", "BankSystem.Tests\bank.system.Tests.csproj", "{B8663545-8E51-4842-ACFF-3D396945D602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
