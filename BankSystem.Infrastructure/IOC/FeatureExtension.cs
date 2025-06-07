@@ -1,4 +1,6 @@
 ﻿using bank.system.Application.Features.Account.Create;
+using bank.system.Application.Features.Account.List;
+using bank.system.Application.Features.Account.Update;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 
@@ -9,7 +11,9 @@ namespace bank.system.Infrastructure.IOC
 	{
 		public static IServiceCollection AddFeatures(this IServiceCollection services)
 		{
-			services.AddSingleton<ICreateAccountUseCase, CreateAccountUseCase>();
+			services.AddScoped<ICreateAccountUseCase, CreateAccountUseCase>()
+					.AddScoped<IListAccountUseCase, ListAccountUseCase>()
+					.AddScoped<IDesactiveAccountUseCase, DesactiveAccountUseCase>();
 
 			return services;
 		}

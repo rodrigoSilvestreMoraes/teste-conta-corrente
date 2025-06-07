@@ -1,4 +1,6 @@
-﻿using bank.system.Infrastructure.Options;
+﻿using bank.system.Application.Domain.Repository.Account;
+using bank.system.Application.Shared.Options;
+using bank.system.Infrastructure.Repository.Account;
 using bank.system.Infrastructure.Repository.Connection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -16,9 +18,11 @@ namespace bank.system.Infrastructure.IOC
 
 			services.AddSingleton(opt =>
 			{
-				var options = opt.GetRequiredService<IOptions<DatabaseOptions>>();
+				var options = opt.GetRequiredService<IOptions<DatabaseOption>>();
 				return new NpgsqlDataSourceBuilder(options.Value.ConnectionString).Build();
 			});
+
+			services.AddSingleton<IAccountReposity, AccountRepository>();
 
 			return services;
 		}

@@ -1,8 +1,11 @@
-﻿using Entities =  bank.system.Application.Domain.Entities;
+﻿using Entities = bank.system.Application.Domain.Entities;
 using bank.system.Application.Domain.Repository.Account;
 using bank.system.Infrastructure.Repository.Connection;
-using Npgsql;
 using System.Diagnostics.CodeAnalysis;
+using Dapper;
+using bank.system.Application.Features.Account.List.Model;
+using bank.system.Application.Domain.Entities;
+using System.Transactions;
 
 namespace bank.system.Infrastructure.Repository.Account
 {
@@ -19,34 +22,85 @@ namespace bank.system.Infrastructure.Repository.Account
 		public async Task<bool> Insert(Entities.Account account, Entities.Balance balance, CancellationToken cancellationToken)
 		{
 			await using var connection =  await _connectionFactory.GetConnection();
-			await connection.OpenAsync();
 			await using var transaction = await connection.BeginTransactionAsync();
 			try
 			{
-				using var command = new NpgsqlCommand(AccountCommands.CommandInsert, connection);
-				command.Parameters.AddWithValue("@Name", account.Name);
-				command.Parameters.AddWithValue("@Document", account.Document);
-				command.Parameters.AddWithValue("@StatusAccount", account.Status); 
-				command.Parameters.AddWithValue("@OpeningDate", account.OpeningDate);
-				command.Parameters.AddWithValue("@UpdateDate", account.UpdateDate); 
-				var accountId = (long)await command.ExecuteScalarAsync(cancellationToken);
+				var parametersAccount = new 
+				{
+					name = account.Name,
+					document = account.Document,
+					statusAccount = account.Status,
+					openingDate = account.OpeningDate,
+					updateDate = account.UpdateDate
+				};
 
+				var accountId = await connection.ExecuteScalarAsync<long>(
+					new CommandDefinition(commandText: AccountCommands.CommandInsert, parameters: parametersAccount, transaction: transaction));
 
-				await using var balanceCommand = new NpgsqlCommand(AccountCommands.CommandInsertBalance, connection, transaction);
-				balanceCommand.Parameters.AddWithValue("@AccountId", accountId);
-				balanceCommand.Parameters.AddWithValue("@CurrentBalance", balance.CurrentBalance);
-				balanceCommand.Parameters.AddWithValue("@UpdateDate", balance.UpdateDate);
-				await balanceCommand.ExecuteNonQueryAsync(cancellationToken);
+				var parametersBalance = new
+				{
+					accountId = accountId,
+					currentBalance = balance.CurrentBalance,
+					updateDate = balance.UpdateDate
+				};
+
+				 await connection.ExecuteScalarAsync(
+					new CommandDefinition(commandText: AccountCommands.CommandInsertBalance, parameters: parametersBalance, transaction: transaction));
 
 				await transaction.CommitAsync();
+				return true;
 			}
 			catch 
 			{
 				await transaction.RollbackAsync();
 				throw;
-			}
+			}			
+		}
+		public async Task<List<AccountListResponse>> List(string? document, string? name, CancellationToken cancellationToken)
+		{
+			await using var connection = await _connectionFactory.GetConnection();
 
-			return false;
+			var parameters = new
+			{
+				document = document,
+				name = name,
+			};
+			var data = await connection.QueryAsync<AccountListResponse>(new CommandDefinition(
+				commandText: AccountCommands.CommandSelectList,
+				parameters: parameters,
+				cancellationToken: cancellationToken));
+
+			return  data.ToList();
+		}
+		public async Task<Entities.Account> Select(long? id, string? document, CancellationToken cancellationToken)
+		{
+			await using var connection = await _connectionFactory.GetConnection();
+
+			var parameters = new
+			{
+				id = id,
+				document = document,
+			};
+			var data = await connection.QueryAsync<Entities.Account>(new CommandDefinition(
+				commandText: AccountCommands.CommandSelect,
+				parameters: parameters,
+				cancellationToken: cancellationToken));
+
+			var account = data.FirstOrDefault();
+			return account;
+		}
+		public async Task<bool> UpdateStatus(long id, int status, string userName, CancellationToken cancellationToken)
+		{
+			await using var connection = await _connectionFactory.GetConnection();
+			var parametersAccount = new
+			{
+				id = id,
+				status = status,
+				userName = userName
+			};
+
+			var rowsAffects = await connection.ExecuteAsync(new CommandDefinition(commandText: AccountCommands.CommandUpdateStatus, parameters: parametersAccount));
+			return rowsAffects > 0;
 		}
 	}
 }

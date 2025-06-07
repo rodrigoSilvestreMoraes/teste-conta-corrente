@@ -1,7 +1,7 @@
-﻿using bank.system.Infrastructure.Options;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
+using bank.system.Application.Shared.Options;
 
 namespace bank.system.Infrastructure.IOC
 {
@@ -13,7 +13,8 @@ namespace bank.system.Infrastructure.IOC
 			if(configuration is null)
 				throw new ArgumentNullException(nameof(configuration));
 
-			return services.Configure<DatabaseOptions>(configuration.GetSection("DatabaseConfig"));			
+			return services.Configure<DatabaseOption>(configuration.GetSection("DatabaseConfig"))
+							.Configure<AccountRulesOption>(configuration.GetSection("AccountRulesConfig"));
 		}
 	}
 }

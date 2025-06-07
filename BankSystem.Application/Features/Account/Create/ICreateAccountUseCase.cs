@@ -5,6 +5,6 @@ namespace bank.system.Application.Features.Account.Create
 {
 	public interface ICreateAccountUseCase
 	{
-		Task<AppResponse<bool>> CreateAccountAsync(AccountCreateRequest accountCreateRequest, CancellationToken cancellationToken);
+		Task<AppResponse<AccountCreateResponse>> CreateAccountAsync(AccountCreateRequest accountCreateRequest, CancellationToken cancellationToken);
 	}
 }

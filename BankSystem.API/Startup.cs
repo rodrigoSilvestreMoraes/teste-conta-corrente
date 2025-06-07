@@ -14,6 +14,7 @@ using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Diagnostics;
 using bank.system.Application.Shared.Results;
+using FluentValidation.AspNetCore;
 
 namespace bank.system.API
 {
@@ -43,12 +44,14 @@ namespace bank.system.API
 			services.AddSettings(Configuration);
 			services.AddRepositorys();
 			services.AddFeatures();
+			services.AddValidations();
 
 			services.AddControllersWithViews()
 				.AddJsonOptions(options =>
 				options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 
+			
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo
