@@ -15,6 +15,8 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Diagnostics;
 using bank.system.Application.Shared.Results;
 using FluentValidation.AspNetCore;
+using System.IO;
+using System.Reflection;
 
 namespace bank.system.API
 {
@@ -62,6 +64,14 @@ namespace bank.system.API
 
 				c.EnableAnnotations();
 				c.CustomSchemaIds(x => x.FullName);
+
+				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+				var appXmlFile = "bank.system.Application.xml";
+				var appXmlPath = Path.Combine(AppContext.BaseDirectory, appXmlFile);
+				c.IncludeXmlComments(appXmlPath);
+				c.IncludeXmlComments(xmlPath);
 			});
 		}
 
