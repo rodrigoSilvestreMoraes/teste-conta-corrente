@@ -27,7 +27,7 @@ public class TransferRepository : ITransferRepository
 			var accountFrom = transferAgregate.BankTransferFrom.AccountId;
 			var accountTo = transferAgregate.BankTransferTo.AccountId;
 
-
+			//Essas duas consultas realizam block a nível de registro apenas para as contas envolvidas na transferências
 			var fromBalance = await connection.QuerySingleAsync<Balance>(TransferCommands.CommandSelectBlockBalance, new { id = accountFrom }, transaction);
 			var toBalance = await connection.QuerySingleAsync<Balance>(TransferCommands.CommandSelectBlockBalance, new { id = accountTo }, transaction );
 

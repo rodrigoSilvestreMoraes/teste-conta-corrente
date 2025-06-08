@@ -48,13 +48,12 @@ namespace bank.system.API.Controllers
 			{
 				var result = await _createAccountUseCase.CreateAccountAsync(accountCreateRequest, cancellationToken);
 				if (!result.Invalid) 
-					return Ok(result.Response);
+					return StatusCode(StatusCodes.Status201Created,result.Response);
 
 				return BadRequest(result.Validation);
 			}
 			catch (Exception ex)
 			{
-				//_ = _customLog.GravarLog(CustomLogRequest.Create(Global.API, ControllerContext.ActionDescriptor.ControllerName, ex));
 				return StatusCode(StatusCodes.Status500InternalServerError, CustomValidators.GetDefaultInternalServerError());
 			}
 		}
@@ -77,7 +76,6 @@ namespace bank.system.API.Controllers
 			}
 			catch (Exception ex)
 			{
-				//_ = _customLog.GravarLog(CustomLogRequest.Create(Global.API, ControllerContext.ActionDescriptor.ControllerName, ex));
 				return StatusCode(StatusCodes.Status500InternalServerError, CustomValidators.GetDefaultInternalServerError());
 			}
 		}
@@ -105,12 +103,8 @@ namespace bank.system.API.Controllers
 			}
 			catch (Exception ex)
 			{
-				//_ = _customLog.GravarLog(CustomLogRequest.Create(Global.API, ControllerContext.ActionDescriptor.ControllerName, ex));
 				return StatusCode(StatusCodes.Status500InternalServerError, CustomValidators.GetDefaultInternalServerError());
 			}
 		}
-
-		
-
 	}
 }

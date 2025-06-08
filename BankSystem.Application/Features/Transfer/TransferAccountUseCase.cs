@@ -28,7 +28,6 @@ public class TransferAccountUseCase : ITransferAccountUseCase
 		var response = new AppResponse<TransferAccountResponse>();
 		var validationResult = await _validator.ValidateAsync(transferAccountRequest, cancellationToken);
 
-		//validar dados de entrada
 		if (!validationResult.IsValid)
 		{
 			response.Validation.VndErrors.Errors.AddRange(CustomValidators.GetVndErros(validationResult.Errors));
@@ -67,7 +66,6 @@ public class TransferAccountUseCase : ITransferAccountUseCase
 			response.Validation.VndErrors.Errors.Add(new ErrorDetail { ErrorCode = TransferShared._errorCode, Message = "Conta destino inválida." });
 			return response;
 		}
-
 
 		//Preparando objetos para transferência
 		var transacionId = Guid.NewGuid();

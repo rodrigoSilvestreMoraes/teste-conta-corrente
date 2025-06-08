@@ -1,6 +1,9 @@
 ﻿using Npgsql;
+using System.Diagnostics.CodeAnalysis;
 
 namespace bank.system.Infrastructure.Repository.Connection;
+
+[ExcludeFromCodeCoverage]
 public class ConnectionFactory : IConnectionFactory
 {
 	readonly NpgsqlDataSource _dataSource;
