@@ -11,7 +11,6 @@ namespace bank.system.Infrastructure.Repository.Account;
 public class AccountRepository : IAccountReposity
 {
 	readonly IConnectionFactory _connectionFactory; 
-
 	public AccountRepository(IConnectionFactory connectionFactory)
 	{
 		_connectionFactory = connectionFactory;

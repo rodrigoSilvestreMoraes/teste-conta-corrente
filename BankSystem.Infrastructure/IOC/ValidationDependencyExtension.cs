@@ -1,6 +1,6 @@
 ﻿using bank.system.Application.Features.Account.Create.Validation;
 using bank.system.Application.Features.Account.Update.Validation;
-using bank.system.Application.Features.BankTransfer.TransferAccount.Validation;
+using bank.system.Application.Features.Transfer.Validation;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;

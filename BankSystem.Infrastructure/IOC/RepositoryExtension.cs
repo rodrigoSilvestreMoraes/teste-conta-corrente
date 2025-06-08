@@ -1,7 +1,9 @@
 ﻿using bank.system.Application.Domain.Repository.Account;
+using bank.system.Application.Domain.Repository.Transfer;
 using bank.system.Application.Shared.Options;
 using bank.system.Infrastructure.Repository.Account;
 using bank.system.Infrastructure.Repository.Connection;
+using bank.system.Infrastructure.Repository.Transfer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Npgsql;
@@ -22,7 +24,8 @@ public static class RepositoryExtension
 			return new NpgsqlDataSourceBuilder(options.Value.ConnectionString).Build();
 		});
 
-		services.AddSingleton<IAccountReposity, AccountRepository>();
+		services.AddSingleton<IAccountReposity, AccountRepository>()
+			.AddSingleton<ITransferRepository, TransferRepository>();
 
 		return services;
 	}

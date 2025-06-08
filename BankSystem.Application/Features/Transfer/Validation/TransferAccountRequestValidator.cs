@@ -1,7 +1,7 @@
-﻿using bank.system.Application.Features.BankTransfer.TransferAccount.Model;
+﻿using bank.system.Application.Features.Transfer.Model;
 using FluentValidation;
 
-namespace bank.system.Application.Features.BankTransfer.TransferAccount.Validation;
+namespace bank.system.Application.Features.Transfer.Validation;
 public class TransferAccountRequestValidator : AbstractValidator<TransferAccountRequest>
 {
 	public TransferAccountRequestValidator()
