@@ -1,13 +1,11 @@
 ﻿using System.ComponentModel;
 
-namespace bank.system.Application.Domain.Entities.Enums
+namespace bank.system.Application.Domain.Entities.Enums;
+public enum StatusAccount
 {
-	public enum StatusAccount
-	{
-		[Description("Inativo")]
-		Inactive = 0,
+	[Description("Inativo")]
+	Inactive = 0,
 
-		[Description("Ativo")]
-		Active = 1		
-	}
+	[Description("Ativo")]
+	Active = 1		
 }

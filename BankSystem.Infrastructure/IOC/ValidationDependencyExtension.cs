@@ -1,5 +1,6 @@
 ﻿using bank.system.Application.Features.Account.Create.Validation;
 using bank.system.Application.Features.Account.Update.Validation;
+using bank.system.Application.Features.BankTransfer.TransferAccount.Validation;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
@@ -14,7 +15,8 @@ public static class ValidationDependencyExtension
 				options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 		services.AddValidatorsFromAssemblyContaining<AccountCreateRequestValidator>()
-				.AddValidatorsFromAssemblyContaining<DesactiveAccountRequestValidator>();
+				.AddValidatorsFromAssemblyContaining<DesactiveAccountRequestValidator>()
+				.AddValidatorsFromAssemblyContaining<TransferAccountRequestValidator>();
 
 		return services;
 	}

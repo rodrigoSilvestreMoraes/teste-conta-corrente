@@ -1,8 +1,6 @@
-﻿namespace bank.system.Application.Domain.Entities.Enums
+﻿namespace bank.system.Application.Domain.Entities.Enums;
+public enum  TypeOperation
 {
-	public enum  TypeOperation
-	{
-		Debit = 1,
-		Credit = 2
-	}
+	Debit = 1,
+	Credit = 2
 }

@@ -1,14 +1,12 @@
 ﻿using Npgsql;
 
-namespace bank.system.Infrastructure.Repository.Connection
+namespace bank.system.Infrastructure.Repository.Connection;
+public class ConnectionFactory : IConnectionFactory
 {
-	public class ConnectionFactory : IConnectionFactory
+	readonly NpgsqlDataSource _dataSource;
+	public ConnectionFactory(NpgsqlDataSource dataSource)
 	{
-		readonly NpgsqlDataSource _dataSource;
-		public ConnectionFactory(NpgsqlDataSource dataSource)
-		{
-			_dataSource = dataSource;
-		}
-		public async Task<NpgsqlConnection> GetConnection() => await _dataSource.OpenConnectionAsync();		
+		_dataSource = dataSource;
 	}
+	public async Task<NpgsqlConnection> GetConnection() => await _dataSource.OpenConnectionAsync();		
 }

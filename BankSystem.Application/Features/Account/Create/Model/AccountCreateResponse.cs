@@ -1,7 +1,5 @@
-﻿namespace bank.system.Application.Features.Account.Create.Model
+﻿namespace bank.system.Application.Features.Account.Create.Model;
+public class AccountCreateResponse
 {
-	public class AccountCreateResponse
-	{
-		public bool Result { get; set; }
-	}
+	public bool Result { get; set; }
 }

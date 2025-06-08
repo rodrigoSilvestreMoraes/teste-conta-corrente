@@ -4,18 +4,17 @@ using bank.system.Application.Features.Account.Update;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 
-namespace bank.system.Infrastructure.IOC
-{
-	[ExcludeFromCodeCoverage]
-	public static class FeatureExtension
-	{
-		public static IServiceCollection AddFeatures(this IServiceCollection services)
-		{
-			services.AddScoped<ICreateAccountUseCase, CreateAccountUseCase>()
-					.AddScoped<IListAccountUseCase, ListAccountUseCase>()
-					.AddScoped<IDesactiveAccountUseCase, DesactiveAccountUseCase>();
+namespace bank.system.Infrastructure.IOC;
 
-			return services;
-		}
+[ExcludeFromCodeCoverage]
+public static class FeatureExtension
+{
+	public static IServiceCollection AddFeatures(this IServiceCollection services)
+	{
+		services.AddScoped<ICreateAccountUseCase, CreateAccountUseCase>()
+				.AddScoped<IListAccountUseCase, ListAccountUseCase>()
+				.AddScoped<IDesactiveAccountUseCase, DesactiveAccountUseCase>();
+
+		return services;
 	}
 }

@@ -6,7 +6,6 @@ using bank.system.Application.Shared.Results;
 using FluentValidation;
 
 namespace bank.system.Application.Features.Account.Update;
-
 public class DesactiveAccountUseCase : IDesactiveAccountUseCase
 {
 	readonly IAccountReposity _accountReposity;

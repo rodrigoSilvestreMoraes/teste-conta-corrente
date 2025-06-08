@@ -1,9 +1,7 @@
 ﻿using Npgsql;
 
-namespace bank.system.Infrastructure.Repository.Connection
+namespace bank.system.Infrastructure.Repository.Connection;
+public interface IConnectionFactory
 {
-	public interface IConnectionFactory
-	{
-		Task<NpgsqlConnection> GetConnection();
-	}
+	Task<NpgsqlConnection> GetConnection();
 }

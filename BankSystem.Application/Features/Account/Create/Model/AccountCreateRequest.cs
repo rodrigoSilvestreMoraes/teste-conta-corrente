@@ -1,8 +1,6 @@
-﻿namespace bank.system.Application.Features.Account.Create.Model
+﻿namespace bank.system.Application.Features.Account.Create.Model;
+public class AccountCreateRequest
 {
-	public class AccountCreateRequest
-	{
-		public string Name { get; set; }
-		public string Document {  get; set; }
-	}
+	public string Name { get; set; }
+	public string Document {  get; set; }
 }

@@ -1,10 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace bank.system.Application.Shared.Options
+namespace bank.system.Application.Shared.Options;
+
+[ExcludeFromCodeCoverage]
+public class DatabaseOption
 {
-	[ExcludeFromCodeCoverage]
-	public class DatabaseOption
-	{
-		public string ConnectionString {  get; set; }
-	}
+	public string ConnectionString {  get; set; }
 }
