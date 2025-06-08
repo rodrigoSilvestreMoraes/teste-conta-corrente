@@ -4,7 +4,6 @@ using System.Text.Json.Serialization;
 namespace bank.system.Application.Features.Account.List.Model;
 public class AccountListResponse
 {
-	[JsonIgnore]
 	public long Id { get; set; }
 	public string Name { get; set; }
 	public string Document { get; set; }

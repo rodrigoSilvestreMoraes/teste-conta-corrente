@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System.Diagnostics.CodeAnalysis;
 
 namespace bank.system.Application.Shared.Results;
+
+[ExcludeFromCodeCoverage]
 public class RestClientVndErrors
 {
 	[JsonProperty("_embedded")]

@@ -11,5 +11,5 @@ public class ConnectionFactory : IConnectionFactory
 	{
 		_dataSource = dataSource;
 	}
-	public async Task<NpgsqlConnection> GetConnection() => await _dataSource.OpenConnectionAsync();		
+	public async Task<NpgsqlConnection> GetConnection(CancellationToken cancellationToken) => await _dataSource.OpenConnectionAsync(cancellationToken);		
 }

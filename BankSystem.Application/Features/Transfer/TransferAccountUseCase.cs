@@ -11,7 +11,6 @@ public class TransferAccountUseCase : ITransferAccountUseCase
 {
 	readonly IAccountReposity _accountReposity;
 	readonly ITransferRepository _transferRepository;
-
 	readonly IValidator<TransferAccountRequest> _validator;
 	public TransferAccountUseCase(
 		ITransferRepository transferRepository,
@@ -92,7 +91,7 @@ public class TransferAccountUseCase : ITransferAccountUseCase
 		var balanceUpdateTo = new Balance { AccountId = transferAccountRequest.AccountDestination, UpdateDate = releaseDate };
 
 		var aggregateTransfer = new TransferAgregate(bankTransferAccountFrom, bankTransferAccountTo, balanceUpdateFrom, balanceUpdateTo, transferAccountRequest.Value);
-		var result = await _transferRepository.ExecuteTransfer(aggregateTransfer);
+		var result = await _transferRepository.ExecuteTransfer(aggregateTransfer, cancellationToken);
 
 		response.Response = result;
 

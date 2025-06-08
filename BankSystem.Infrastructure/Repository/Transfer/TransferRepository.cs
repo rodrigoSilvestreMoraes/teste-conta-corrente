@@ -17,10 +17,10 @@ public class TransferRepository : ITransferRepository
 		_connectionFactory = connectionFactory;
 	}
 
-	public async Task<TransferAccountResponse> ExecuteTransfer(TransferAgregate transferAgregate)
+	public async Task<TransferAccountResponse> ExecuteTransfer(TransferAgregate transferAgregate, CancellationToken cancellationToken)
 	{
-		await using var connection = await _connectionFactory.GetConnection();
-		await using var transaction = await connection.BeginTransactionAsync();
+		await using var connection = await _connectionFactory.GetConnection(cancellationToken);
+		await using var transaction = await connection.BeginTransactionAsync(cancellationToken);
 
 		try
 		{

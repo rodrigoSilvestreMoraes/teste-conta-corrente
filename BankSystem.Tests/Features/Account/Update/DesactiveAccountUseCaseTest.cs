@@ -24,7 +24,7 @@ public class DesactiveAccountUseCaseTest
 	[Fact]
 	public async void Should_DesativeAccount()
 	{
-		var request = new DesactiveAccountRequest { Document = "666.127.640-15", UserName = "teste" };
+		var request = new DesactiveAccountRequest { Document = "95.387.458/0001-51", UserName = "teste" };
 		
 		var mockAccountResult = AccountListResponseStub.GetMock();
 		_accountReposity.Setup(x => x.Select(It.IsAny<long?>(), It.IsAny<string?>(), It.IsAny<CancellationToken>()))
@@ -56,9 +56,7 @@ public class DesactiveAccountUseCaseTest
 		var useCase = GetUseCase();
 		var result = await useCase.DesactiveAccountAsync(request, new CancellationToken());
 
-		Assert.NotNull(result);
-		Assert.True(result.Invalid);
-		Assert.True(result.Validation.VndErrors.Errors.Any());
+		UseCaseAssertShared.ValidateErrorDefault(result);
 	}
 
 	[Fact]
@@ -75,9 +73,7 @@ public class DesactiveAccountUseCaseTest
 		var useCase = GetUseCase();
 		var result = await useCase.DesactiveAccountAsync(request, new CancellationToken());
 
-		Assert.NotNull(result);
-		Assert.True(result.Invalid);
-		Assert.True(result.Validation.VndErrors.Errors.Any());
+		UseCaseAssertShared.ValidateErrorDefault(result);
 	}
 
 	[Fact]
@@ -93,9 +89,7 @@ public class DesactiveAccountUseCaseTest
 		var useCase = GetUseCase();
 		var result = await useCase.DesactiveAccountAsync(request, new CancellationToken());
 
-		Assert.NotNull(result);
-		Assert.True(result.Invalid);
-		Assert.True(result.Validation.VndErrors.Errors.Any());
+		UseCaseAssertShared.ValidateErrorDefault(result);
 	}
 
 	[Fact]
@@ -106,10 +100,7 @@ public class DesactiveAccountUseCaseTest
 		var useCase = GetUseCase();
 		var result = await useCase.DesactiveAccountAsync(request, new CancellationToken());
 
-		Assert.NotNull(result);
-		Assert.True(result.Invalid);
-		Assert.True(result.Validation.VndErrors.Errors.Any());
-
+		UseCaseAssertShared.ValidateErrorDefault(result);
 	}
 
 	IDesactiveAccountUseCase GetUseCase() => new DesactiveAccountUseCase(_accountReposity.Object, _validator);

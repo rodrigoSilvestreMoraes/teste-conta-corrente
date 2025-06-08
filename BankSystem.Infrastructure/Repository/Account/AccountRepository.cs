@@ -18,8 +18,8 @@ public class AccountRepository : IAccountReposity
 
 	public async Task<bool> Insert(Entities.Account account, Entities.Balance balance, CancellationToken cancellationToken)
 	{
-		await using var connection =  await _connectionFactory.GetConnection();
-		await using var transaction = await connection.BeginTransactionAsync();
+		await using var connection =  await _connectionFactory.GetConnection(cancellationToken);
+		await using var transaction = await connection.BeginTransactionAsync(cancellationToken);
 		try
 		{
 			var parametersAccount = new 
@@ -55,7 +55,7 @@ public class AccountRepository : IAccountReposity
 	}
 	public async Task<List<AccountListResponse>> List(string? document, string? name, CancellationToken cancellationToken)
 	{
-		await using var connection = await _connectionFactory.GetConnection();
+		await using var connection = await _connectionFactory.GetConnection(cancellationToken);
 
 		var parameters = new
 		{
@@ -71,7 +71,7 @@ public class AccountRepository : IAccountReposity
 	}
 	public async Task<AccountListResponse> Select(long? id, string? document, CancellationToken cancellationToken)
 	{
-		await using var connection = await _connectionFactory.GetConnection();
+		await using var connection = await _connectionFactory.GetConnection(cancellationToken);
 
 		var parameters = new
 		{
@@ -88,7 +88,7 @@ public class AccountRepository : IAccountReposity
 	}
 	public async Task<bool> UpdateStatus(long id, int status, string userName, CancellationToken cancellationToken)
 	{
-		await using var connection = await _connectionFactory.GetConnection();
+		await using var connection = await _connectionFactory.GetConnection(cancellationToken);
 		var parametersAccount = new
 		{
 			id = id,

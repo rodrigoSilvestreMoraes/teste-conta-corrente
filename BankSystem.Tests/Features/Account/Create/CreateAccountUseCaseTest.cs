@@ -62,10 +62,7 @@ public class CreateAccountUseCaseTest
 
 		var useCase = GetUseCase();
 		var result = await useCase.CreateAccountAsync(request, new CancellationToken());
-
-		Assert.NotNull(result);
-		Assert.True(result.Invalid);
-		Assert.True(result.Validation.VndErrors.Errors.Any());
+		UseCaseAssertShared.ValidateErrorDefault(result);
 	}
 
 	[Fact]
@@ -84,9 +81,7 @@ public class CreateAccountUseCaseTest
 		var useCase = GetUseCase();
 		var result = await useCase.CreateAccountAsync(request, new CancellationToken());
 
-		Assert.NotNull(result);
-		Assert.True(result.Invalid);
-		Assert.True(result.Validation.VndErrors.Errors.Any());
+		UseCaseAssertShared.ValidateErrorDefault(result);
 	}
 
 	ICreateAccountUseCase GetUseCase() => new CreateAccountUseCase(_accountReposity.Object, _accountRulesOption, _validator);
