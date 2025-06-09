@@ -61,6 +61,7 @@ Para rodar este projeto, são necessários os seguintes pré-requisitos:
 - Docker instalado e configurado  
 - DBeaver client para acessar o Postgree
 - Rodar a API dentro do Visual Studio 
+- Use o siteÇ https://www.4devs.com.br, para gerar CPF's e CNPJ's válidos
 
 ### Banco de Dados com Docker Compose
 
