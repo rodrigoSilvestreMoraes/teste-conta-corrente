@@ -88,6 +88,20 @@ http://localhost:5008/swagger/index.html
 
 ---
 
+## Importação via Postman
+
+Para facilitar o uso e testes locais da API, é possível utilizar o Postman.
+
+Um arquivo de coleção já está disponível na raiz do projeto com o nome: API Bank System.postman_collection.json
+
+
+Você pode importar esse arquivo diretamente no Postman para ter acesso a todos os endpoints organizados e prontos para uso.
+
+> Isso agiliza os testes locais e facilita o entendimento das rotas disponíveis.
+
+
+---
+
 ## Estrutura do Projeto
 
 O projeto segue uma arquitetura em camadas, dividida nos seguintes diretórios:
