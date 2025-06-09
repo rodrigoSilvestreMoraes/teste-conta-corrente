@@ -69,10 +69,10 @@ O projeto utiliza PostgreSQL. Para subir o banco com Docker, use o arquivo `dock
 
 docker-compose up -d
 
-- **Tabelas Modeladas**
-- account: Contém os dados da conta, gerencia o cadastro, alteração de status.
-- balance: Contém o saldo da conta.
-- bank_transfer: Contém o controle e histórico das transações realizadas entre as contas.
+**Tabelas Modeladas**
+- **account:** Contém os dados da conta, gerencia o cadastro, alteração de status.
+- **balance:** Contém o saldo da conta.
+- **bank_transfer:** Contém o controle e histórico das transações realizadas entre as contas.
 
 ## Rodando a cobertura de teste unitário e gerando relatório de cobertura:  
 
