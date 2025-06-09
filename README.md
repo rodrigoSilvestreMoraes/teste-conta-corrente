@@ -59,6 +59,8 @@ Para rodar este projeto, são necessários os seguintes pré-requisitos:
 - .NET 9 SDK instalado  
 - Sistema operacional Windows (não testado em Linux)  
 - Docker instalado e configurado  
+- DBeaver client para acessar o Postgree
+- Rodar a API dentro do Visual Studio 
 
 ### Banco de Dados com Docker Compose
 
